@@ -22,3 +22,7 @@ The name Astriarch comes from the Ancient Greek words for star (<a href="http://
 Credits
 =======
 Astriarch - Ruler of the Stars, space strategy game designed and developed by <a href="http://www.masteredsoftware.com/" target="_blank">Mastered Software</a>, music by Resonant. Astriarch HTML 5/JavaScript version uses <a href="https://github.com/mpalmerlee/Stratiscape" target="_blank">Stratiscape</a> JavaScript Canvas Library and the <a href="https://github.com/mpalmerlee/jQuery-UI-Listbox" target="_blank">jQuery Listbox plugin</a>.
+
+License
+=======
+This Silverlight version of Astriarch - Ruler of the Stars is released under the MIT License.
