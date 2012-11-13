@@ -12,64 +12,6 @@ using System.Collections.Generic;
 
 namespace SystemMaster.Library
 {
-    //special events are for assiging a random property to a planet for example
-    //or random galactic event
-    public class GameSpecialEventModifier
-    {
-        private string name = "";
-        public string Name
-        {
-            get { return this.name; }
-            set { this.name = value; }
-        }
-
-        private string description = "";
-        public string Description
-        {
-            get { return this.description; }
-            set { this.description = value; }
-        }
-
-        private double floatData = 0.0;
-        public double FloatData
-        {
-            get { return this.floatData; }
-            set { this.floatData = value; }
-        }
-
-        public GameSpecialEventModifier(string name, string description)
-        {
-            this.name = name;
-            this.description = description;
-
-
-        }
-    }
-    
-    public enum GameSpecialEventType : int
-    {
-        //for increasing output type events floatData will be the percentage amount 0.05 for 5%
-        //for a deacrease in output use -0.05 for floatData
-        PLANET_EFFECT_INCREASE_GOLD_OUTPUT = 1,
-        PLANET_EFFECT_INCREASE_FARMER_OUTPUT = 2,
-        PLANET_EFFECT_INCREASE_MINER_OUTPUT = 3,
-        PLANET_EFFECT_INCREASE_WORKER_OUTPUT = 4,
-        GLOBAL_EVENT_ALL_PLAYERS_INCREASE_GOLD_OUTPUT = 5,
-        GLOBAL_EVENT_ALL_PLAYERS_INCREASE_FARMER_OUTPUT = 6,
-        GLOBAL_EVENT_ALL_PLAYERS_INCREASE_MINER_OUTPUT = 7,
-        GLOBAL_EVENT_ALL_PLAYERS_INCREASE_WORKER_OUTPUT = 8,
-        //Ship effect?
-
-
-    }
-
-
-    public enum GameSpecialEventTargetType : int
-    {
-        PLANET,
-
-    }
-
     public class Turn
     {
         private int number = 1;
