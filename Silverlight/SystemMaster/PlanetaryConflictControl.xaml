@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="SystemMaster.PlanetaryConflictControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="380" Height="240">
+    <Grid x:Name="LayoutRoot" Opacity="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Name="PlanetaryConflictSummary" Grid.Row="0" Width="380" Height="220" TextWrapping="Wrap"></TextBlock>
+        <CheckBox Name="NeverShowPlanetaryConflictPopupsCheckbox" Grid.Row="1" Height="20" Content="Don't automatically show planetary conflict summaries"></CheckBox>
+    </Grid>
+</UserControl>

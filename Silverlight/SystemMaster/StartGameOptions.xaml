@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="SystemMaster.StartGameOptions"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="640" Height="400">
+    <Grid x:Name="LayoutRoot" Background="Gray" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="315" />
+            <ColumnDefinition Width="315" />
+            <ColumnDefinition Width="5" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="210"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Foreground="White" Name="AboutSystemMasterTextBlock1" Text="Welcome to Astriarch - Ruler of the Stars" Width="630" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+            <TextBlock Foreground="White" Name="AboutSystemMasterTextBlock2" Text="Please enter your name and choose the desired game settings." Width="630" TextAlignment="Center"></TextBlock>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Foreground="White" Text="Your Name:" Width="75"></TextBlock>
+            <TextBox Name="PlayerNameTextBox" Text="Player1" Width="207"></TextBox>            
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Foreground="White" Text="Number of Opponents:" Width="150"></TextBlock>
+            <RadioButton Name="OpponentCountRadio1" Content="1" Width="50" GroupName="OpponentCountRadioGroup" IsChecked="true"></RadioButton>
+            <RadioButton Name="OpponentCountRadio2" Content="2" Width="50" GroupName="OpponentCountRadioGroup"></RadioButton>
+            <RadioButton Name="OpponentCountRadio3" Content="3" Width="50" GroupName="OpponentCountRadioGroup"></RadioButton>
+        </StackPanel>
+        <Grid ShowGridLines="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210" />
+                <ColumnDefinition Width="210" />
+                <ColumnDefinition Width="210" />
+            </Grid.ColumnDefinitions>
+        
+            <StackPanel Name="Computer1Panel" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Name="Computer1TextBlock" Foreground="White" Text="Computer 1:" Width="75" Margin="5"></TextBlock>
+                <ComboBox Name="Computer1DifficultyComboBox" Width="75"></ComboBox>
+            </StackPanel>
+            <StackPanel Name="Computer2Panel" Visibility="Collapsed" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Name="Computer2TextBlock" Foreground="White" Text="Computer 2:" Width="75" Margin="5"></TextBlock>
+                <ComboBox Name="Computer2DifficultyComboBox" Width="75"></ComboBox>
+            </StackPanel>
+            <StackPanel Name="Computer3Panel" Visibility="Collapsed" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Name="Computer3TextBlock" Foreground="White" Text="Computer 3:" Width="75" Margin="5"></TextBlock>
+                <ComboBox Name="Computer3DifficultyComboBox" Width="75"></ComboBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210" />
+                <ColumnDefinition Width="210" />
+                <ColumnDefinition Width="210" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Name="StarfieldPanel1" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Name="StarfieldTextBlock1" Foreground="White" Text="Two Systems:" HorizontalAlignment="Center"></TextBlock>
+                <RadioButton Name="StarfieldRadio1" HorizontalAlignment="Center" GroupName="StarfieldRadioGroup" IsChecked="true"></RadioButton>
+                <Image Name="StarfieldImage1" Opacity="100" Source="img/starfield1.png" Width="200" Height="170"></Image>
+            </StackPanel>
+            <StackPanel Name="StarfieldPanel2" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Name="StarfieldTextBlock2" Foreground="White" Text="Three Systems:" HorizontalAlignment="Center"></TextBlock>
+                <RadioButton Name="StarfieldRadio2" HorizontalAlignment="Center" GroupName="StarfieldRadioGroup"></RadioButton>
+                <Image Name="StarfieldImage2" Opacity="100" Source="img/starfield2.png" Width="200" Height="170"></Image>
+            </StackPanel>
+            <StackPanel Name="StarfieldPanel3" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Name="StarfieldTextBlock3" Foreground="White" Text="Four Systems:" HorizontalAlignment="Center"></TextBlock>
+                <RadioButton Name="StarfieldRadio3" HorizontalAlignment="Center" GroupName="StarfieldRadioGroup"></RadioButton>
+                <Image Name="StarfieldImage3" Opacity="100" Source="img/starfield3.png" Width="200" Height="170"></Image>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Name="PlanetsPerSystemTextBlock" Foreground="White" Text="Planets Per System:" Width="110" Margin="5"></TextBlock>
+            <ComboBox Name="PlanetsPerSystemComboBox" Width="40" Height="20"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2">
+            <Button Name="StartGameOptionsOkButton" Content="Start Game" HorizontalAlignment="Center" Width="150"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

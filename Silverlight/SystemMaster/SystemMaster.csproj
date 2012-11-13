@@ -1,0 +1,322 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95083E33-A761-411B-B7A2-F1514BB54512}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SystemMaster</RootNamespace>
+    <AssemblyName>SystemMaster</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>SystemMaster.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>SystemMaster.App</SilverlightAppEntry>
+    <TestPageFileName>TestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>true</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217" />
+    <Reference Include="System.Reactive, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1b331ac6720247d9, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Theming.BureauBlack, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Theming.ExpressionDark, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Theming.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlertWindow.xaml.cs">
+      <DependentUpon>AlertWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AudioInterface.cs" />
+    <Compile Include="DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawnPlanet.cs" />
+    <Compile Include="GameOverControl.xaml.cs">
+      <DependentUpon>GameOverControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IDialogWindowControl.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlanetaryConflictControl.xaml.cs">
+      <DependentUpon>PlanetaryConflictControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlanetViewControl.xaml.cs">
+      <DependentUpon>PlanetViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomTileImageCanvas.cs" />
+    <Compile Include="SendShipsControl.xaml.cs">
+      <DependentUpon>SendShipsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartGameOptions.xaml.cs">
+      <DependentUpon>StartGameOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </ApplicationDefinition>
+    <Page Include="AlertWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="GameOverControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="PlanetaryConflictControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="PlanetViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="SendShipsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="StartGameOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Resource Include="Themes\ExpressionDark.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SystemMasterControlLibrary\SystemMasterControlLibrary.csproj">
+      <Project>{C5B69030-07D9-4A62-A5B1-70022152F3AB}</Project>
+      <Name>SystemMasterControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemMasterLibrary\SystemMasterLibrary.csproj">
+      <Project>{88E9FA33-CD62-4758-A719-D62AAD0FD201}</Project>
+      <Name>SystemMasterLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\PlanetAsteroidTile.png" />
+    <Resource Include="img\PlanetClass1Tile.png" />
+    <Resource Include="img\PlanetClass2Tile.png" />
+    <Resource Include="img\PlanetDeadTile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\SystemMasterLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\backgrounds\1.jpg" />
+    <Resource Include="img\backgrounds\2.jpg" />
+    <Resource Include="img\backgrounds\3.jpg" />
+    <Resource Include="img\backgrounds\4.jpg" />
+    <Resource Include="img\backgrounds\6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\backgrounds\0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\large_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\backgrounds\5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\starship.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\spaceplatform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\ico_add.png" />
+    <Resource Include="img\ico_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\starfield1.png" />
+    <Resource Include="img\starfield2.png" />
+    <Resource Include="img\starfield3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\borders\border_bl_corner.png" />
+    <Resource Include="img\borders\border_bottom.png" />
+    <Resource Include="img\borders\border_br_corner.png" />
+    <Resource Include="img\borders\border_left.png" />
+    <Resource Include="img\borders\border_right.png" />
+    <Resource Include="img\borders\border_tl_corner.png" />
+    <Resource Include="img\borders\border_top.png" />
+    <Resource Include="img\borders\border_tr_corner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\ColonyLarge.png" />
+    <Resource Include="img\FactoryLarge.png" />
+    <Resource Include="img\FarmLarge.png" />
+    <Resource Include="img\MineLarge.png" />
+    <Resource Include="img\SpaceplatformLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\FoodLarge.png" />
+    <Resource Include="img\GoldLarge.png" />
+    <Resource Include="img\IridiumLarge.png" />
+    <Resource Include="img\OreLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\PopulationLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\BattleshipLarge.png" />
+    <Resource Include="img\CruiserLarge.png" />
+    <Resource Include="img\DefenderLarge.png" />
+    <Resource Include="img\DestroyerLarge.png" />
+    <Resource Include="img\ScoutLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\PopulationSmallEmpty.png" />
+    <Resource Include="img\PopulationSmallFilled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Builder.png" />
+    <Resource Include="img\Farmer.png" />
+    <Resource Include="img\Miner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\PlanetaryImprovementSlotEmpty.png" />
+    <Resource Include="img\PlanetaryImprovementSlotFilled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\ProductionLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\PlanetAsteroid.png" />
+    <Resource Include="img\PlanetClass1.png" />
+    <Resource Include="img\PlanetClass2.png" />
+    <Resource Include="img\PlanetDead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\ico_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\ico_down.png" />
+    <Resource Include="img\ico_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="audio\game-over.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\game-over.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game1.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game2.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game3.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game4.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\in-game4.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\menu-start.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="audio\menu-start.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\ico_speaker_off.png" />
+    <Resource Include="img\ico_speaker_on.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

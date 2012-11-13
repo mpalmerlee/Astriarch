@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="SystemMaster.PlanetViewControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:smcl="clr-namespace:SystemMaster.ControlLibrary;assembly=SystemMasterControlLibrary"
+    Width="560" Height="360">
+    <Grid x:Name="LayoutRoot" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="270" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="PlanetStatsGrid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ShowGridLines="False" Background="Black" Height="360" Width="144">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32" />
+                <ColumnDefinition Width="64" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="0" Grid.Row="0" Name="PlanetImage" Canvas.ZIndex="1001" Width="32" Height="32"  ToolTipService.ToolTip="" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Name="TextBlockPlanetType" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" TextAlignment="Center" />
+            
+            <Image Grid.Column="0" Grid.Row="2" Canvas.ZIndex="1001" Source="img/FoodLarge.png" ToolTipService.ToolTip="Food Per Turn" />
+            <TextBlock Grid.Column="1" Grid.Row="2" Name="TextBlockFoodPerTurn" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Food Per Turn" TextAlignment="Right" />
+            <Image Grid.Column="0" Grid.Row="3" Canvas.ZIndex="1001" Source="img/OreLarge.png" ToolTipService.ToolTip="Ore Per Turn" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Name="TextBlockOrePerTurn" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Ore Per Turn" TextAlignment="Right" />
+            <Image Grid.Column="0" Grid.Row="4" Canvas.ZIndex="1001" Source="img/IridiumLarge.png" ToolTipService.ToolTip="Iridium Per Turn" />
+            <TextBlock Grid.Column="1" Grid.Row="4" Name="TextBlockIridiumPerTurn" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Iridium Per Turn" TextAlignment="Right" />
+            <Image Grid.Column="0" Grid.Row="5" Canvas.ZIndex="1001" Source="img/ProductionLarge.png" ToolTipService.ToolTip="Production Per Turn" />
+            <TextBlock Grid.Column="1" Grid.Row="5" Name="TextBlockProductionPerTurn" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Production Per Turn" TextAlignment="Right" />
+            
+            <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" Foreground="Green" HorizontalAlignment="Center">Planetary Improvements:</TextBlock>
+            
+            <Image Grid.Column="0" Grid.Row="7" Canvas.ZIndex="1001" Source="img/FarmLarge.png" ToolTipService.ToolTip="Farm Count" />
+            <TextBlock Grid.Column="1" Grid.Row="7" Name="TextBlockFarmCount" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Farm Count" TextAlignment="Right" />
+            <Button Name="ButtonDemolishFarm" Grid.Column="3" Grid.Row="7" Width="24" Height="24" ToolTipService.ToolTip="Demolish one Farm" Visibility="Collapsed">
+                <Image Source="img/ico_delete.png" Stretch="None"/>
+            </Button>
+            
+            
+            <Image Grid.Column="0" Grid.Row="8" Canvas.ZIndex="1001" Source="img/MineLarge.png" ToolTipService.ToolTip="Mine Count" />
+            <TextBlock Grid.Column="1" Grid.Row="8" Name="TextBlockMineCount" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Mine Count" TextAlignment="Right" />
+            <Button Name="ButtonDemolishMine" Grid.Column="3" Grid.Row="8" Width="24" Height="24" ToolTipService.ToolTip="Demolish one Mine" Visibility="Collapsed">
+                <Image Source="img/ico_delete.png" Stretch="None"/>
+            </Button>
+            
+            <Image Grid.Column="0" Grid.Row="9" Canvas.ZIndex="1001" Source="img/FactoryLarge.png" ToolTipService.ToolTip="Factory Count" />
+            <TextBlock Grid.Column="1" Grid.Row="9" Name="TextBlockFactoryCount" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Factory Count" TextAlignment="Right" />
+            <Button Name="ButtonDemolishFactory" Grid.Column="3" Grid.Row="9" Width="24" Height="24" ToolTipService.ToolTip="Demolish one Factory" Visibility="Collapsed">
+                <Image Source="img/ico_delete.png" Stretch="None"/>
+            </Button>
+            
+            <Image Grid.Column="0" Grid.Row="10" Canvas.ZIndex="1001" Source="img/ColonyLarge.png" ToolTipService.ToolTip="Colony Count" />
+            <TextBlock Grid.Column="1" Grid.Row="10" Name="TextBlockColonyCount" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Colony Count" TextAlignment="Right" />
+            <Button Name="ButtonDemolishColony" Grid.Column="3" Grid.Row="10" Width="24" Height="24" ToolTipService.ToolTip="Demolish one Colony" Visibility="Collapsed">
+                <Image Source="img/ico_delete.png" Stretch="None"/>
+            </Button>
+            
+            <Image Grid.Column="0" Grid.Row="11" Canvas.ZIndex="1001" Source="img/SpaceplatformLarge.png" ToolTipService.ToolTip="Space Platform Count" />
+            <TextBlock Grid.Column="1" Grid.Row="11" Name="TextBlockSpacePlatformCount" Canvas.ZIndex="1000" Text="" FontWeight="Bold" Foreground="Green" ToolTipService.ToolTip="Space Platform Count" TextAlignment="Right" />
+        </Grid>
+        
+        <Grid x:Name="PopulationAssignments" Grid.Column="1" Grid.Row="0" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55" />
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Farmers:</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="TextBoxFarmers" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+            <StackPanel Grid.Row="0" Grid.Column="2">
+                <smcl:IntegerTickSlider Name="SliderFarmers" Width="Auto" SmallChange="1"></smcl:IntegerTickSlider>
+            </StackPanel>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Miners:</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="TextBoxMiners" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <smcl:IntegerTickSlider Name="SliderMiners" Width="Auto" SmallChange="1"></smcl:IntegerTickSlider>
+            </StackPanel>
+            
+            <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Workers:</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="TextBoxWorkers" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+            <StackPanel Grid.Row="2" Grid.Column="2">
+                <smcl:IntegerTickSlider Name="SliderWorkers" Width="Auto" SmallChange="1"></smcl:IntegerTickSlider>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="BuildQueue" Grid.Column="1" Grid.Row="1" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="225" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Name="ItemsAvailableTextBlock" Text="Available Items to Build" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Name="BuildQueueTextBlock" Text="Items in Build Queue" />
+            <Grid Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="52" />
+                    <ColumnDefinition Width="52" />
+                    <ColumnDefinition Width="52" />
+                    <ColumnDefinition Width="24" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12" />
+                    <RowDefinition Height="12" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="(Gold" Width="52" Height="12" TextAlignment="Right"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="/  Ore  /" Width="52" Height="12" TextAlignment="Center"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Iridium)" Width="52" Height="12" TextAlignment="Left"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Name="TextBlockCurrentGoldAmount" Width="52" Height="12" TextAlignment="Right"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Name="TextBlockCurrentOreAmount" Width="52" Height="12" TextAlignment="Center"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="1" Name="TextBlockCurrentIridiumAmount" Width="52" Height="12" TextAlignment="Left"></TextBlock>
+                <Button Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Name="ButtonBuildQueueAddSelectedItem" Width="24" Height="24" HorizontalAlignment="Right" ToolTipService.ToolTip="Add Selected Item to Build Queue">
+                    <Image Source="img/ico_add.png" Stretch="None"/>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="1" Orientation="Horizontal">
+                <Button Name="ButtonBuildQueueRemoveSelectedItem" Width="24" Height="24" HorizontalAlignment="Left" ToolTipService.ToolTip="Remove Selected Item from Build Queue">
+                    <Image Source="img/ico_remove.png" Stretch="None"/>
+                </Button>
+                <Button Name="ButtonBuildQueueMoveSelectedItemDown" Width="24" Height="24" HorizontalAlignment="Left" ToolTipService.ToolTip="Move Selected Item Down">
+                    <Image Source="img/ico_down.png" Stretch="None"/>
+                </Button>
+                <Button Name="ButtonBuildQueueMoveSelectedItemUP" Width="24" Height="24" HorizontalAlignment="Left" ToolTipService.ToolTip="Move Selected Item Up">
+                    <Image Source="img/ico_up.png" Stretch="None"/>
+                </Button>
+                <StackPanel Orientation="Vertical" Margin="0" Height="30">
+                    <CheckBox Name="BuildLastShipCheckBox" Height="16" Foreground="Black" IsChecked="True" Content="Build Last Ship"></CheckBox>
+                    <TextBlock Name="LastShipBuiltTextBlock" FontSize="10" Height="12" TextAlignment="Center"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <ListBox Name="ItemsAvailableListBox" Grid.Column="0" Grid.Row="2" Height="Auto"></ListBox>
+            <ListBox Name="BuildQueueListBox" Grid.Column="1" Grid.Row="2" Height="Auto"></ListBox>
+        </Grid>
+    </Grid>
+</UserControl>

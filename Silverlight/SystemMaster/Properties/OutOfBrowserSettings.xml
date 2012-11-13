@@ -1,0 +1,7 @@
+<OutOfBrowserSettings ShortName="Astriarch: Planetary Master Space Strategy Game" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>Astriarch - Ruler of the Stars, desktop application.</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="Astriarch - Ruler of the Stars, Planetary Master Space Strategy Game" Height="600" Width="800" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.Icons />
+</OutOfBrowserSettings>

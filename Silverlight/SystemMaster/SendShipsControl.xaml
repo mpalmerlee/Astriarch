@@ -1,0 +1,53 @@
+﻿<UserControl 
+    xmlns:bureauBlack="clr-namespace:System.Windows.Controls.Theming;assembly=System.Windows.Controls.Theming.BureauBlack"  
+    xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input"  
+    x:Class="SystemMaster.SendShipsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:smcl="clr-namespace:SystemMaster.ControlLibrary;assembly=SystemMasterControlLibrary"
+    Width="380" Height="240">
+    <Grid x:Name="LayoutRoot" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TopGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Name="SendShipsStatus" Width="Auto"></TextBlock>
+            <Button Grid.Row="0" Grid.Column="1" Name="ButtonSendNoShips" Width="75" Height="24" Content="Send None" HorizontalAlignment="Left" ToolTipService.ToolTip="Send no ships from the Planet" />
+            <Button Grid.Row="0" Grid.Column="2" Name="ButtonSendAllShips" Width="75" Height="24" Content="Send All" HorizontalAlignment="Right" ToolTipService.ToolTip="Send all ships on the Planet" />
+        </Grid>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Scouts:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="TextBoxScouts" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+        <smcl:IntegerTickSlider Grid.Row="1" Grid.Column="2" Name="SliderScouts" Width="Auto" SmallChange="1" LargeChange="1" IsEnabled="False"></smcl:IntegerTickSlider>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Destroyers:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="TextBoxDestroyers" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+        <smcl:IntegerTickSlider Grid.Row="2" Grid.Column="2" Name="SliderDestroyers" Width="Auto" SmallChange="1" LargeChange="1" IsEnabled="False"></smcl:IntegerTickSlider>
+        
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">Cruisers:</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="TextBoxCruisers" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+        <smcl:IntegerTickSlider Grid.Row="3" Grid.Column="2" Name="SliderCruisers" Width="Auto" SmallChange="1" LargeChange="1" IsEnabled="False"></smcl:IntegerTickSlider>
+        
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">Battleships:</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="TextBoxBattleships" Width="Auto" Height="25" IsReadOnly="True" Text="0" />
+        <smcl:IntegerTickSlider Grid.Row="4" Grid.Column="2" Name="SliderBattleships" Width="Auto" SmallChange="1" LargeChange="1" IsEnabled="False"></smcl:IntegerTickSlider>
+    </Grid>
+</UserControl>
