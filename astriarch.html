@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Astriarch - Ruler of the Stars, space strategy game</title>
+<link type="text/css" href="css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<link type="text/css" href="css/js-listbox-style.css" rel="stylesheet" />
+<link type="text/css" href="css/jquery.ui.selectmenu.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/js-inherit.js"></script>
+<script type="text/javascript" src="js/jCanvas.js"></script>
+<script type="text/javascript" src="js/js-listbox.js"></script>
+<script type="text/javascript" src="js/jquery.ui.selectmenu.js"></script>
+<script type="text/javascript" src="js/audio-interface.js"></script>
+<!--
+<script type="text/javascript" src="astriarch/astriarch_globals.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_view.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_grid.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_hexagon.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_model.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_player.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_planet.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_fleet.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_turneventmessage.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_battlesimulator.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_ai.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_drawnplanet.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_drawnfleet.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_dialog.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_gamecontroller.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_planetview.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_sendshipscontrol.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_planetaryconflictcontrol.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_gameovercontrol.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_alert.js"></script>
+<script type="text/javascript" src="astriarch/astriarch_savedgameinterface.js"></script>
+-->
+<script type="text/javascript" src="astriarch.js"></script>
+
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	height: 100%;
+	width: 100%
+}
+body {
+	height: 100%;
+	width: 100%;
+	background: #000 url("site/tile-bg.png") repeat top center;
+
+	/*  Webkit */
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	
+	/*  Mozilla */
+	display: -moz-box;
+	-moz-box-orient: horizontal;
+	-moz-box-pack: center;
+	-moz-box-align: center;
+	
+	/*  Standard */
+	display: box;
+	box-orient: horizontal;
+	box-pack: center;
+	box-align: center;
+	
+	
+	/*
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	*/
+}
+img {
+	border: 0px;
+}
+
+#gameElementsContainer
+{
+	
+}
+
+a:focus, a:hover, a:active { outline:none } 
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+.ui-selectmenu
+{
+	font-size: 12px !important;
+	height: 2em;
+	text-align: left;
+}
+
+.ui-widget
+{
+    font-size: 75%;
+	/*font-family: Lucida Sans Unicode,Veranda,Lucida Grande,Lucida Sans,Helvetica,Arial,sans-serif;
+	font-weight: bold;*/
+	font-family:Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+}
+
+.ui-widget .ui-widget
+{
+	font-size: 1em;
+	font-size: 95%;
+}
+
+/* fix size of icon only jquery ui buttons */
+.ui-button-icon-only
+{
+	width: 24px;
+	height:24px;
+}
+
+body, .defaultFont
+{
+	/*font-family: Lucida Sans Unicode,Veranda,Lucida Grande,Lucida Sans;*/
+	font-family:Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+
+	/*disable text selection*/
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+	outline:none;
+}
+
+table, td, tr, thead, tfoot, tbody, th, tf {
+	table-layout:fixed;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	border:0;
+}
+
+td > span, td > img {
+	display: block;
+}
+
+#PlayerNameTextBox
+{
+	background-color:#595959;
+	color:white;
+	border: 1px solid #333;
+	font-family:Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+}
+
+#canvasAstriarchBackground
+{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:0;
+	background-color:black;
+}
+
+#canvasAstriarchPlayfield
+{
+	position:absolute;
+	top:5px;
+	/*right:8px;*/
+	left:177px;
+	/*bottom:115px;*/
+	z-index:1;
+}
+
+#gameControls
+{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:100;
+	width: 800px;
+	height: 600px;
+}
+#mainMenu,
+#startGameOptionsContainer,
+#TurnDisplay,
+#OverallPlayerStatusGrid,
+#SelectedItemPopulationPanel,
+#SelectedItemImprovementSlotsPanel,
+#SelectedItemPopulationAssignmentsPanel,
+#SelectedItemBuiltImprovementsGrid,
+#SelectedItemPlanetaryFleetGrid,
+#BottomStatusGrid,
+#ButtonPanel
+{
+	display:none;
+}
+
+.greenText
+{
+	color: green;
+	font-family: "Courier New";
+}
+
+.playerStatusText
+{
+	text-align:right;
+	font-weight:bold;
+	font-size:20pt;
+}
+
+.planetStatusTextCentered
+{
+	text-align:center;
+	font-weight:bold;
+	font-size:20pt;
+}
+
+.planetStatusTextSmallCentered
+{
+	text-align:center;
+	font-weight:bold;
+	font-size:14pt;
+}
+
+.playerStatusTextRight{
+	text-align:right;
+	font-weight:bold;
+	font-size:20pt;
+}
+
+.smallStatusText
+{
+	font-size:10pt;
+	font-weight:bold;
+}
+
+.popImg, .asnImg
+{
+	width: 10px;
+	height: 16px;
+}
+
+.impImg
+{
+	width: 16px;
+	height: 16px;
+}
+
+.icon_demolish
+{
+	background-image: url("img/ico_delete.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+.icon_build_queue_add
+{
+	background-image: url("img/ico_add.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+.icon_build_queue_remove
+{
+	background-image: url("img/ico_remove.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+.icon_build_queue_down
+{
+	background-image: url("img/ico_down.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+.icon_build_queue_up
+{
+	background-image: url("img/ico_up.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+.MainMenuButton
+{
+	background-image: url("img/ico_main_menu.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+#MainMenuIcon
+{
+	background-image: url("img/ico_main_menu.png") !important;
+	width: 16px;
+	height: 16px;
+	margin-left: 6px;
+	margin-bottom: 4px;
+}
+
+#SpeakerIcon
+{
+	background-image: url("img/ico_speaker_on.png");
+	width: 16px;
+	height: 16px;
+	margin-left: 6px;
+	margin-bottom: 4px;
+}
+
+.SpeakerImgOn
+{
+	background-image: url("img/ico_speaker_on.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+.SpeakerImgOff
+{
+	background-image: url("img/ico_speaker_off.png") !important;
+	width: 16px;
+	height: 16px;
+}
+
+#SliderVolume
+{
+	position: absolute;
+	bottom: 44px;
+	left: 48px;
+	display: none;
+	height: 100px;
+	z-index: 2000;
+}
+
+#BuildLastShipCheckBoxLabel, .ui-checkbox
+{
+	vertical-align:top;
+	font-size:11px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	window.name = "astriarch-home";
+	
+});
+
+//global "events"
+var AstriarchExtern = {	};
+
+AstriarchExtern.OnGameStart = function(data) {
+	//{'Players':#, 'PlanetsPerSystem':#, 'Systems':#}
+	_gaq.push(['_trackEvent', 'Astriarch', 'Game Started', 'Players', data.Players]);
+	_gaq.push(['_trackEvent', 'Astriarch', 'Game Started', 'Planets Per System', data.PlanetsPerSystem]);
+	_gaq.push(['_trackEvent', 'Astriarch', 'Game Started', 'Systems', data.Systems]);
+};
+
+AstriarchExtern.OnGameOver = function(data) {
+	//{'PlayerWon':true|false, 'Turns':#, 'Score':#}
+	if(data.PlayerWon)
+		_gaq.push(['_trackEvent', 'Astriarch', 'Game Over', 'Player Won', data.Score]);
+	else
+		_gaq.push(['_trackEvent', 'Astriarch', 'Game Over', 'Player Lost', data.Score]);
+		
+	_gaq.push(['_trackEvent', 'Astriarch', 'Game Over', 'Turns Played', data.Turns]);
+};
+
+
+</script>
+</head>
+<body>
+	<!--
+	<div style="position: relative;">
+		<canvas id="canvasAstriarchBackground" width="800" height="600"></canvas>
+		<canvas id="canvasAstriarchPlayfield" width="615" height="480"></canvas>
+	</div>
+	-->
+	<table>
+	<tr>
+	<td colspan="3">
+	</td>
+	</tr>
+	<tr>
+	<td>
+		<!-- left sidebar -->
+	</td>
+	<td>
+	<div id="gameElementsContainer" style="position: relative;width:800px;height:600px;">
+	
+	<div id="canvasContainer" style="position: relative;"></div>
+	
+	<div id="loadingSpinner" style="position:absolute;width:160px;height:100px;left:320px;top:270px;color:white;font-size:12px;background-color:gray;opacity:0.8;z-index:2002;">
+	<table cellpadding="0" cellspacing="0" style="position:absolute;left:5px;right:5px;top:5px;bottom:5px;z-index:30012">
+			<tr height="25"><td width="150" align="center"><span style="text-align:center">Loading...</span></td></tr>
+			<tr height="75"><td width="150" align="center"><img src="img/spinner-green.gif" /></td></tr>
+	</table>
+	</div>
+	
+	<div id="mainMenu" style="position:absolute;width:320px;height:200px;left:240px;top:220px;color:white;font-size:12px;background-color:gray;opacity:0.8;z-index:2001;">
+		<table cellpadding="0" cellspacing="0" style="position:absolute;left:5px;right:5px;top:5px;bottom:5px;z-index:3001;">
+			<tr height="25"><td width="310" align="center"><span style="text-align:center">Welcome to Astriarch - Ruler of the Stars</span></td></tr>
+			<tr height="50"><td width="310" align="center"><button id="NewSkirmishGameButton" style="font-size:12px;" width="100">New Game</button></td></tr>
+			<tr height="50"><td width="310" align="center"><button id="NewCampaignGameButton" style="font-size:12px;" width="100">New Campaign</button></td></tr>
+			<tr height="50"><td width="310" align="center"><button id="ResumeGameButton" style="font-size:12px;" width="100">Resume Game</button></td></tr>
+		</table>
+	
+	</div>
+	
+	<div id="startGameOptionsContainer" style="position:absolute;width:640px;height:400px;left:80px;top:120px;color:white;font-size:12px;background-color:gray;opacity:0.8;z-index:2000;">
+		<table cellpadding="0" cellspacing="0" style="position:absolute;left:5px;right:5px;top:5px;bottom:5px;z-index:3000;">
+			<tr height="50"><td width="630" colspan="2">
+				<div style="text-align:center">New Skirmish Game</div>
+				<div style="text-align:center">Please enter your name and choose the desired game settings.</div>
+			</td></tr>
+			<tr height="30">
+				<td width="315"><label style="width:75px">Your Name:&nbsp;<input type="text" id="PlayerNameTextBox" value="Player1" style="width:207px;" /></label></td>
+				<td width="315"><form style="margin: 0px; padding: 0px;">
+					<table cellpadding="0" cellspacing="0">
+					<tr>
+					<td width="150"><label style="width:150px">Number of Opponents:&nbsp;</label></td><td width="55"><label><input type="radio" name="OpponentCountRadioGroup" id="OpponentCountRadio1" value="1" checked="checked" />1</label></td><td width="55"><label><input type="radio" name="OpponentCountRadioGroup" id="OpponentCountRadio2" value="2" />2</label></td><td width="55"><label><input type="radio" name="OpponentCountRadioGroup" id="OpponentCountRadio3" value="3" />3</label></td>
+					</tr>
+					</table>
+				</form></td>
+			</tr>
+			<tr height="30">
+				<td width="630" colspan="2">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+						<td width="210"><label id="Computer1Panel">Computer 1: <select id="Computer1DifficultyComboBox"><option value="1">Easy</option><option value="2">Normal</option><option value="3">Hard</option><option value="4">Expert</option></select></label></td>
+						<td width="210"><label id="Computer2Panel" style="display:none">Computer 2: <select id="Computer2DifficultyComboBox"><option value="1">Easy</option><option value="2">Normal</option><option value="3">Hard</option><option value="4">Expert</option></select></label></td>
+						<td width="210"><label id="Computer3Panel" style="display:none">Computer 3: <select id="Computer3DifficultyComboBox"><option value="1">Easy</option><option value="2">Normal</option><option value="3">Hard</option><option value="4">Expert</option></select></label></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="210">
+				<td width="630" colspan="2"><form style="margin: 0px; padding: 0px;">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+						<td width="210" align="center"><label id="StarfieldPanel1">Two Systems:<br /><input type="radio" name="StarfieldRadioGroup" id="StarfieldRadio1" value="2" checked="checked" /><img src="img/starfield1.png" width="200" height="170" /></label></td>
+						<td width="210" align="center"><label id="StarfieldPanel2">Three Systems:<br /><input type="radio" name="StarfieldRadioGroup" id="StarfieldRadio2" value="3" /><img src="img/starfield2.png" width="200" height="170" /></label></td>
+						<td width="210" align="center"><label id="StarfieldPanel3">Four Systems:<br /><input type="radio" name="StarfieldRadioGroup" id="StarfieldRadio3" value="4" /><img src="img/starfield3.png" width="200" height="170" /></label></td>
+						</tr>
+					</table>
+				</form></td>
+			</tr>
+			<tr height="30">
+				<td width="630" colspan="2" align="center"><label style="width:110px">Planets Per System: <select id="PlanetsPerSystemComboBox"><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label></td>
+			</tr>
+			<tr height="40">
+				<td width="630" colspan="2" align="center"><button id="StartGameOptionsOkButton" width="150" style="font-size:12px;">Start Game</button></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="SliderVolume"></div>
+	<div id="AstriarchAlertBox" style="display:none;height:100px"></div>
+	
+	<div id="gameControlsContainer" style="position: relative;background-color:blue;">
+		<div id="gameControls">
+			<table id="gameGrid" cellpadding="0" cellspacing="0" style="position:absolute;left:8px;right:8px;top:5px;bottom:5px;z-index:1001;">
+			<tr height="590">
+				<td width="169" valign="top">
+					<!-- left hand status panel -->
+					<table cellpadding="0" cellspacing="0" class="greenText">
+						<tr><td><img src="img/SystemMasterLogo.png" /></td></tr>
+						<tr height="16"><td><span id="TurnDisplay" class="smallStatusText">Turn 1, Year 3001</span></td></tr>
+						<tr><td>
+							<table id="OverallPlayerStatusGrid" cellpadding="0" cellspacing="0" style="text-align:right;">
+								<tr height="32">
+									<td width="32"><img src="img/PopulationLarge.png" Title="Total Population" /></td>
+									<td width="128"><span id="TextBlockPopulationAmount" Title="Total Population" class="playerStatusText"></span></td>
+								</tr>
+								<tr height="32">
+									<td width="32"><img src="img/FoodLarge.png" Title="Food Amount" /></td>
+									<td width="128"><span id="TextBlockFoodAmount" Title="Food Amount" class="playerStatusText"></span></td>
+								</tr>
+								<tr height="32">
+									<td width="32"><img src="img/GoldLarge.png" Title="Gold Amount" /></td>
+									<td width="128"><span id="TextBlockGoldAmount" Title="Gold Amount" class="playerStatusText"></span></td>
+								</tr>
+								<tr height="32">
+									<td width="32"><img src="img/OreLarge.png" Title="Ore Amount" /></td>
+									<td width="128"><span id="TextBlockOreAmount" Title="Ore Amount" class="playerStatusText"></span></td>
+								</tr>
+								<tr height="32">
+									<td width="32"><img src="img/IridiumLarge.png" Title="Iridium Amount" /></td>
+									<td width="128"><span id="TextBlockIridiumAmount" Title="Iridium Amount" class="playerStatusText"></span></td>
+								</tr>
+							</table>
+						</td></tr>
+						<tr height="64"><td><span id="SelectedItemStatus" style="height:64px;" class="smallStatusText"></span></td></tr>
+						<tr height="16"><td>
+							<table id="SelectedItemPopulationPanel" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="10"><div id="PopulationImage1" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage2" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage3" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage4" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage5" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage6" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage7" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage8" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage9" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage10" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage11" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage12" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage13" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage14" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage15" class="popImg"></div></td>
+								<td width="10"><div id="PopulationImage16" class="popImg"></div></td>
+							</tr>
+							</table>
+						</td></tr>
+						<tr height="16"><td>
+							<table id="SelectedItemImprovementSlotsPanel" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage1" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage2" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage3" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage4" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage5" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage6" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage7" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage8" class="impImg"></div></td>
+								<td width="16"><div id="PlanetaryImprovementSlotsImage9" class="impImg"></div></td>
+							</tr>
+							</table>
+						</td></tr>
+						<tr height="16"><td>
+							<table id="SelectedItemPopulationAssignmentsPanel" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="10"><div id="PopulationAssignmentImage1" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage2" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage3" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage4" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage5" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage6" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage7" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage8" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage9" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage10" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage11" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage12" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage13" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage14" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage15" class="asnImg"></div></td>
+								<td width="10"><div id="PopulationAssignmentImage16" class="asnImg"></div></td>
+							</tr>
+							</table>
+						</td></tr>
+						<tr><td>
+							<table id="SelectedItemBuiltImprovementsGrid" cellpadding="0" cellspacing="0" style="text-align:center;">
+							<tr height="32">
+								<td width="32"><img src="img/FarmLarge.png" Title="Farm Count" /></td>
+								<td width="32"><img src="img/MineLarge.png" Title="Mine Count" /></td>
+								<td width="32"><img src="img/FactoryLarge.png" Title="Factory Count" /></td>
+								<td width="32"><img src="img/ColonyLarge.png" Title="Colony Count" /></td>
+								<td width="32"><img src="img/SpaceplatformLarge.png" Title="Space Platform Count" /></td>
+							</tr>
+							<tr height="32">
+								<td width="32"><span id="TextBlockFarmCount" Title="Farm Count" class="planetStatusTextCentered" /></td>
+								<td width="32"><span id="TextBlockMineCount" Title="Mine Count" class="planetStatusTextCentered" /></td>
+								<td width="32"><span id="TextBlockFactoryCount" Title="Factory Count" class="planetStatusTextCentered" /></td>
+								<td width="32"><span id="TextBlockColonyCount" Title="Colony Count" class="planetStatusTextCentered" /></td>
+								<td width="32"><span id="TextBlockSpacePlatformCount" Title="Space Platform Count" class="planetStatusTextCentered" /></td>
+							</tr>
+							</table>
+						</td></tr>
+						<tr><td>
+							<table id="SelectedItemPlanetaryFleetGrid" cellpadding="0" cellspacing="0" style="text-align:center;">
+							<tr height="32">
+								<td width="32"><img src="img/DefenderLarge.png" Title="Defender Count" /></td>
+								<td width="32"><img src="img/ScoutLarge.png" Title="Scout Count" /></td>
+								<td width="32"><img src="img/DestroyerLarge.png" Title="Destroyer Count" /></td>
+								<td width="32"><img src="img/CruiserLarge.png" Title="Cruiser Count" /></td>
+								<td width="32"><img src="img/BattleshipLarge.png" Title="Battleship Count" /></td>
+							</tr>
+							<tr height="32">
+								<td width="32"><span id="TextBlockDefenderCount" Title="Defender Count" class="planetStatusTextSmallCentered" /></td>
+								<td width="32"><span id="TextBlockScoutCount" Title="Scout Count" class="planetStatusTextSmallCentered" /></td>
+								<td width="32"><span id="TextBlockDestroyerCount" Title="Destroyer Count" class="planetStatusTextSmallCentered" /></td>
+								<td width="32"><span id="TextBlockCruiserCount" Title="Cruiser Count" class="planetStatusTextSmallCentered" /></td>
+								<td width="32"><span id="TextBlockBattleshipCount" Title="Battleship Count" class="planetStatusTextSmallCentered" /></td>
+							</tr>
+							</table>
+						</td></tr>
+						<tr><td>
+							<table id="BottomStatusGrid" cellpadding="0" cellspacing="0">
+							<tr height="14"><td colspan="2">&nbsp;</td></tr>
+							<tr height="32">
+								<td width="32"><span id="MainMenuIcon" Title="Main Menu"></span><button id="MainMenuButton" width="24" height="24" Title="Main Menu" style="display:none">Main Menu</button></td>
+								<td width="32"><span id="SpeakerIcon" Title="Mute Audio"></span><button id="ButtonSpeakerToggleMute" width="24" height="24" Title="Mute Audio" style="display:none">STM</button></td>
+								<td><span id="SystemMasterVersion" Title="" style="font-size:9pt;font-weight:bold;color:darkgreen;padding-left:5px" class="defaultFont" /></td>
+							</tr>
+							</table>
+						</td></tr>
+					</table>
+					<!-- end left hand status panel -->
+				</td>
+				<td width="615">
+					<table cellpadding="0" cellspacing="0">
+						<tr height="480"><td width="615"><div id="canvasMouseHitDetector" style="width:615px;height:480px;background-color:black;opacity:0;"></div></td></tr>
+						<tr height="80"><td><div id="TurnSummaryItemsListBox" style="height:80px;" /></td></tr>
+						<tr height="30"><td>
+							<div id="ButtonPanel">
+								<button id="PlanetViewButton" width="100">Planet View</button>
+								<button id="SendShipsButton" width="100">Send Ships</button>
+								<button id="NextTurnButton" width="100">Next Turn</button>
+								<span id="SendShipsStatus" style="color:yellow;font-size:14px;" class="defaultFont"></span>
+								<button id="CancelSendButton" width="100">Cancel Send Ships</button>
+								<button id="MainMenuButtonGameOver" width="75">Main Menu</button>
+							</div>
+						</td></tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+		</div>
+	</div>
+	</div>
+	
+	<div id="planetViewDialog" style="width:560px;height:360px;display:none">
+		<table id="planetViewGrid" cellpadding="0" cellspacing="0">
+			<tr height="360">
+				<td width="160" valign="top">
+					<table id="PlanetStatsGrid" cellpadding="0" cellspacing="0" class="greenText" style="background-color:black;height:360px;width:144px">
+						<tr height="32">
+							<td width="32"><div id="PlanetImage" style="width:32px;height:32px;" Title=""></div></td>
+							<td colspan="3" width="110"><span id="TextBlockPlanetType" Title="" style="text-align:center;" /></td>
+						</tr>
+						<tr height="20"><td colspan="4">&nbsp;</td></tr>
+						<tr height="32">
+							<td width="32"><img src="img/FoodLarge.png" Title="Food Per Turn" /></td>
+							<td width="64"><span id="TextBlockFoodPerTurn" Title="Food Per Turn" class="playerStatusTextRight" /></td>
+							<td width="48" colspan="2">&nbsp;</td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/OreLarge.png" Title="Ore Per Turn" /></td>
+							<td width="64"><span id="TextBlockOrePerTurn" Title="Ore Per Turn" class="playerStatusTextRight" /></td>
+							<td width="48" colspan="2">&nbsp;</td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/IridiumLarge.png" Title="Iridium Per Turn" /></td>
+							<td width="64"><span id="TextBlockIridiumPerTurn" Title="Iridium Per Turn" class="playerStatusTextRight" /></td>
+							<td width="48" colspan="2">&nbsp;</td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/ProductionLarge.png" Title="Production Per Turn" /></td>
+							<td width="64"><span id="TextBlockProductionPerTurn" Title="Production Per Turn" class="playerStatusTextRight" /></td>
+							<td width="48" colspan="2">&nbsp;</td>
+						</tr>
+						<tr height="20"><td colspan="4">Planetary Improvements:</td></tr>
+						<tr height="32">
+							<td width="32"><img src="img/FarmLarge.png" Title="Farm Count" /></td>
+							<td width="64"><span id="PlanetViewFarmCount" Title="Farm Count" class="playerStatusTextRight" /></td>
+							<td width="16">&nbsp;</td>
+							<td width="32"><button id="ButtonDemolishFarm" width="24" height="24" Title="Demolish one Farm">DF</button></td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/MineLarge.png" Title="Mine Count" /></td>
+							<td width="64"><span id="PlanetViewMineCount" Title="Mine Count" class="playerStatusTextRight" /></td>
+							<td width="16">&nbsp;</td>
+							<td width="32"><button id="ButtonDemolishMine" width="24" height="24" Title="Demolish one Mine">DM</button></td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/FactoryLarge.png" Title="Factory Count" /></td>
+							<td width="64"><span id="PlanetViewFactoryCount" Title="Factory Count" class="playerStatusTextRight" /></td>
+							<td width="16">&nbsp;</td>
+							<td width="32"><button id="ButtonDemolishFactory" width="24" height="24" Title="Demolish one Factory">DF</button></td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/ColonyLarge.png" Title="Colony Count" /></td>
+							<td width="64"><span id="PlanetViewColonyCount" Title="Colony Count" class="playerStatusTextRight" /></td>
+							<td width="16">&nbsp;</td>
+							<td width="32"><button id="ButtonDemolishColony" width="24" height="24" Title="Demolish one Colony">DC</button></td>
+						</tr>
+						<tr height="32">
+							<td width="32"><img src="img/SpaceplatformLarge.png" Title="Space Platform Count" /></td>
+							<td width="64"><span id="PlanetViewSpacePlatformCount" Title="Space Platform Count" class="playerStatusTextRight" /></td>
+							<td width="48" colspan="2">&nbsp;</td>
+						</tr>
+					</table>
+					
+				</td>
+				<td width="400">
+					<table cellpadding="0" cellspacing="0" style="height:360px;width:400px">
+					<tr><td>
+						<table id="PopulationAssignments" cellpadding="0" cellspacing="0" style="height:90px;width:400px">
+							<tr height="30">
+								<td width="55">Farmers:</td>
+								<td width="25"><span id="TextBoxFarmers" style="border:1px;"></span></td>
+								<td width="200"><div id="SliderFarmers"></div></td>
+							</tr>
+							<tr height="30">
+								<td width="55">Miners:</td>
+								<td width="25"><span id="TextBoxMiners" style="border:1px;"></span></td>
+								<td width="200"><div id="SliderMiners"></div></td>
+							</tr>
+							<tr height="30">
+								<td width="55">Workers:</td>
+								<td width="25"><span id="TextBoxWorkers" style="border:1px;"></span></td>
+								<td width="200"><div id="SliderWorkers"></div></td>
+							</tr>
+						</table>
+					</td></tr>
+					<tr><td>
+						<table id="BuildQueue" cellpadding="0" cellspacing="0" style="height:270px;width:400px">
+							<tr height="15">
+								<td width="180"><span id="ItemsAvailableTextBlock">Available Items to Build</span></td>
+								<td width="200"><span id="BuildQueueTextBlock">Items in Build Queue</span></td>
+							</tr>
+							<tr>
+								<td>
+									<table cellpadding="0" cellspacing="0" style="height:30px;width:180px">
+									<tr height="12">
+										<td width="52"><span style="text-align:right">(Gold</span></td>
+										<td width="52"><span style="text-align:center">/  Ore  /</span></td>
+										<td width="52"><span style="text-align:left">Iridium)</span></td>
+										<td width="24" rowspan="2"><button id="ButtonBuildQueueAddSelectedItem" width="24" height="24" Title="Add Selected Item to Build Queue">BQA</button></td>
+									</tr>
+									<tr height="12">
+										<td width="52"><span id="TextBlockCurrentGoldAmount" style="text-align:right"></span></td>
+										<td width="52"><span id="TextBlockCurrentOreAmount" style="text-align:center"></span></td>
+										<td width="52"><span id="TextBlockCurrentIridiumAmount" style="text-align:left"></span></td>
+									</tr>
+									</table>
+								</td>
+								<td>
+									<table cellpadding="0" cellspacing="0" style="width:200px">
+									<tr>
+										<td width="200">
+											<table cellpadding="0" cellspacing="0" style="display:inline;width:200px">
+											<tr height="16">
+											<td rowspan="2" width="28">
+												<button id="ButtonBuildQueueRemoveSelectedItem" width="24" height="24" Title="Remove Selected Item from Build Queue">BQR</button>
+											</td>
+											<td rowspan="2" width="28">
+												<button id="ButtonBuildQueueMoveSelectedItemDown" width="24" height="24" Title="Move Selected Item Down">BQD</button>
+											</td>
+											<td rowspan="2" width="28">
+												<button id="ButtonBuildQueueMoveSelectedItemUp" width="24" height="24" Title="Move Selected Item Up">BQU</button>
+											</td>
+											<td>
+												<input type="checkbox" name="BuildLastShipCheckBox" id="BuildLastShipCheckBox" /><label id="BuildLastShipCheckBoxLabel" for="BuildLastShipCheckBox" style="display:inline">Build Last Ship</label>
+											</td>
+											</tr>
+											<tr height="10">
+											<td>
+												<span id="LastShipBuiltTextBlock" style="height:12px;font-size:10px;display:inline"></span>
+											</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+							<tr height="225">
+								<td width="180"><div id="ItemsAvailableListBox" style="height:225px;"></div></td>
+								<td width="200"><div id="BuildQueueListBox" style="height:225px;"></div></td>
+							</tr>
+						</table>
+					</td></tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="sendShipsDialog" style="width:380px;height:240px;display:none">
+		<table cellpadding="0" cellspacing="0">
+			<tr height="25">
+				<td colspan="3" width="380" valign="top">
+					<table cellpadding="0" cellspacing="0">
+						<tr height="25">
+							<td width="180"><span id="SendShipsDialogStatus"></span></td>
+							<td width="100"><button id="ButtonSendNoShips" width="75" height="24" Title="Send no ships from the Planet">Send None</button></td>
+							<td width="100"><button id="ButtonSendAllShips" width="75" height="24" Title="Send all ships on the Planet">Send All</button></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="50">
+				<td width="140"><span>Scouts:</span></td>
+				<td width="40"><span id="TextBoxScouts">0</td></td>
+				<td width="200"><div id="SliderScouts"></div></td>
+			</tr>
+			<tr height="50">
+				<td width="140"><span>Destroyers:</span></td>
+				<td width="40"><span id="TextBoxDestroyers">0</td></td>
+				<td width="200"><div id="SliderDestroyers"></div></td>
+			</tr>
+			<tr height="50">
+				<td width="140"><span>Cruisers:</span></td>
+				<td width="40"><span id="TextBoxCruisers">0</td></td>
+				<td width="200"><div id="SliderCruisers"></div></td>
+			</tr>
+			<tr height="50">
+				<td width="140"><span>Battleships:</span></td>
+				<td width="40"><span id="TextBoxBattleships">0</td></td>
+				<td width="200"><div id="SliderBattleships"></div></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="planetaryConflictDialog" style="width:380px;height:220px;display:none">
+		<table>
+			<tr height="200"><td><div id="PlanetaryConflictSummary" style="width:380px;height:200px;"></div></td></tr>
+			<tr height="20"><td><label><input type="checkbox" name="NeverShowPlanetaryConflictPopupsCheckbox" id="NeverShowPlanetaryConflictPopupsCheckbox" />Don't automatically show planetary conflict summaries</label></td></tr>
+		</table>
+	</div>
+	
+	<div id="gameOverDialog" style="width:380px;height:210px;display:none">
+		<table>
+			<tr height="210"><td><div id="GameOverSummary" style="width:380px;height:210px;"></div></td></tr>
+		</table>
+	</div>
+	</td>
+	<td>
+	<!-- right sidebar -->
+	</td>
+	</tr>
+	<tr>
+	<td colspan="3">
+	<div id="footer" style="color: white;">
+		<p>Astriarch - Ruler of the Stars html5 version 1.2.1 Copyright 2010 <a href="http://www.masteredsoftware.com/" target="_blank">Mastered Software</a>, Music by Resonant.</p>
+		<p><a href="astriarch-help.html" target="_blank">Astriarch Help and Tutorial Videos</a></p><p><a href="http://www.astriarch.com/" target="_blank">Official Astriarch Site</a></p>
+	</div>
+	</td>
+	</tr>
+	</table>
+	<!--<span id='imageData' />-->
+	
+	
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-7797548-5']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+</body>
+</html>

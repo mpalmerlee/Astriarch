@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<style>
+body {
+	font-size:10pt;
+}
+table, td, tr, thead, tfoot, tbody, th, tf {
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    border:0;
+    line-height:16px;
+}
+
+div {
+line-height:16px;
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	
+	//$('#canvasContainer').live('click', function() { console.log('canvasContainer Clicked');return true;});
+							
+	/*
+	//http://stackoverflow.com/questions/1445862/possible-to-use-html-images-like-canvas-with-getimagedata-putimagedata
+	// 1) Create a canvas, either on the page or simply in code
+	var canvas = document.createElement('canvas');
+	var ctx    = canvas.getContext('2d');
+
+	var img = new Image();
+	img.onload = function(){
+		ctx.drawImage( img, 0, 0 );
+	  
+		// 3) Read your image data
+		var w = img.width, h=img.height;
+		var imgdata = ctx.getImageData(0,0,w,h);
+		var rgba = imgdata.data;
+		
+		$('#imageData').html(rgba.toString());
+		
+		// 4) Read or manipulate the rgba as you wish
+		for (var px=0,ct=w*h;px<ct;px+=4){
+		  var r = rgba[px  ];
+		  var g = rgba[px+1];
+		  var b = rgba[px+2];
+		  var a = rgba[px+3];
+		}
+
+		// 5) Update the context with newly-modified data
+		ctx.putImageData(imgdata,0,0);
+
+		// 6) Draw the image data elsewhere, if you wish
+		//someOtherContext.drawImage( ctx, 0, 0 );
+	};
+	img.src = "./img/spaceplatform.png"; // set this *after* onload
+	*/
+	
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	
+	//$('#canvasContainer').live('click', function() { console.log('canvasContainer Clicked');return true;});
+							
+	
+	//http://stackoverflow.com/questions/1445862/possible-to-use-html-images-like-canvas-with-getimagedata-putimagedata
+	// 1) Create a canvas, either on the page or simply in code
+	var canvas1 = $('#imgCanvasStarship')[0];
+	var ctx1    = canvas1.getContext('2d');
+
+	var canvas2 = $('#imgCanvasSpacePlatform')[0];
+	var ctx2    = canvas2.getContext('2d');
+	
+	getImageData(ctx1, "img/starship.png"); 
+	//getImageData(ctx2, "img/spaceplatform.png"); 
+	
+	var mandelbrot = new Mandelbrot();
+});
+
+function getImageData(ctx, imgLoc)
+{
+	var img = new Image();
+	img.onload = function(){
+		ctx.drawImage( this, 0, 0);
+	  
+		
+		// 3) Read your image data
+		var w = this.width, h=this.height;
+		var imgdata = ctx.getImageData(0,0,w,h);
+		var rgba = imgdata.data;
+		
+		$('#imageData').html(JSON.stringify(rgba));
+		
+		
+		/*
+		// 4) Read or manipulate the rgba as you wish
+		for (var px=0,ct=w*h;px<ct;px+=4){
+		  var r = rgba[px  ];
+		  var g = rgba[px+1];
+		  var b = rgba[px+2];
+		  var a = rgba[px+3];
+		}
+		*/
+		
+		//var canvasOther = $('#otherImgCanvas')[0];
+		//var ctxOther = canvasOther.getContext('2d');
+		// 5) Update the context with newly-modified data
+		//ctxOther.putImageData(imgdata,0,0);
+		testDraw(rgba);
+		
+		// 6) Draw the image data elsewhere, if you wish
+		//someOtherContext.drawImage( ctx, 0, 0 );
+	};
+	img.src = imgLoc; // set this *after* onload
+}
+
+function testDraw(imgData)
+{
+
+	var canvasOther = $('#otherImgCanvas')[0];
+	var ctxOther = canvasOther.getContext('2d');
+	
+	var platformImg = ctxOther.createImageData(11, 11);
+	
+	for (var y = 0; y < platformImg.height; y++) {
+		for (var x = 0; x < platformImg.width; x++) {
+		
+			// Index of the pixel in the array
+			var px = (y + x * platformImg.height) * 4;
+			
+			platformImg.data[px  ] = imgData[px  ];
+			platformImg.data[px+1] = imgData[px+1];
+			platformImg.data[px+2] = imgData[px+2];
+			platformImg.data[px+3] = imgData[px+3];
+		}
+	}
+	//platformImg.data = imgData;
+	
+	
+	// 5) Update the context with newly-modified data
+	
+	ctxOther.putImageData(platformImg,16,16);
+
+}
+
+//from: http://hacks.mozilla.org/2009/06/pushing-pixels-with-canvas/
+Mandelbrot = function() {
+
+	var canvas = document.getElementById('mandelbrotCanvas');
+	var ctx = canvas.getContext('2d');
+	var canvasData = ctx.createImageData(canvas.width, canvas.height);
+	 
+	// Mandelbrot
+	function computeColor(x, y) {
+		x = 2.5 * (x/canvas.width - 0.5);
+		y = 2 * (y/canvas.height - 0.5);
+		var x0 = x;
+		var y0 = y;
+	 
+		var iteration = 0;
+		var max_iteration = 100;
+	 
+		while (x * x + y * y <= 4 && iteration < max_iteration ) {
+			var xtemp = x*x - y*y + x0;
+			y = 2*x*y + y0;
+			x = xtemp;
+			iteration++;
+		}
+	 
+		return Math.round(255 * iteration / max_iteration);
+	}
+	 
+	for (var x = 0; x < canvasData.width; x++) {
+		for (var y = 0; y < canvasData.height; y++) {
+			var color = computeColor(x, y);
+	 
+			// Index of the pixel in the array
+			var idx = (x + y * canvasData.width) * 4;
+	 
+			// Update the values of the pixel;
+			canvasData.data[idx + 0] = color;
+			canvasData.data[idx + 1] = color;
+			canvasData.data[idx + 2] = color;
+			canvasData.data[idx + 3] = 255;
+		}
+	}
+	 
+	ctx.putImageData(canvasData, 0, 0);
+
+}
+</script>
+</head>
+<body>
+	<canvas id='imgCanvasStarship' style="background-color:black;" ></canvas>
+	<canvas id='imgCanvasSpacePlatform' style="background-color:black;" ></canvas>
+	
+	<canvas id='otherImgCanvas' style="background-color:black;" ></canvas>
+	<canvas id='mandelbrotCanvas' style="background-color:black;" ></canvas>
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr style="height:16px">
+        <td><span>Here is some text</span></td>
+        </tr>
+    </table>
+	
+	<div>
+	<span>Here is some text
+		<span>Here is some more text</span>
+	</span>
+	</div>
+	<span id='imageData' />
+</body>
+</html>

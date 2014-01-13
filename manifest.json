@@ -1,0 +1,14 @@
+{
+  "name": "Astriarch - Ruler of the Stars",
+  "version": "1.0.1",
+
+  "description": "Turn-based, Single Player Space Strategy Game. Build planetary improvements and star ships, capture planets and defeat your enemies.",
+  "icons": { "16": "icon16.png",
+          "128": "icon128.png" },
+
+  "app": {
+    "launch": {
+      "local_path": "index.html"
+    }
+  }
+}

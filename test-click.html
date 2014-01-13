@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JS Bind Test</title>
+<link type="text/css" href="css/custom-theme/jquery-ui-1.8.7.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.7.custom.min.js"></script>
+<script type="text/javascript" src="js/js-inherit.js"></script>
+<script type="text/javascript" src="js/js-listbox.js"></script>
+<script type="text/javascript">
+
+function clickHit1Clicked()
+{
+	//alert('clickHit1Clicked');
+	console.log('clickHit1Clicked');
+	return true;
+}
+
+function clickHit2Clicked()
+{
+	//alert('clickHit2Clicked');
+	console.log('clickHit2Clicked');
+	return true;
+}
+
+$(document).ready(function() {
+	//$('#clickHit1').live('click', clickHit1Clicked);
+	//$('#clickHit2').live('click', clickHit2Clicked);
+	
+	//$('#autoCompleteSelectList').combobox();
+	//$(".demo ul").menu();
+	//console.log("Made menu");
+	
+	var jsListBox = new JSListBox({'containerSelector':'#myJSListBox'});
+	
+	var items = [];
+	for(var i = 0; i < 11; i++)
+	{
+		var item = new JSListBox.Item();
+		item.value = 'Test' + i;
+		items.push(item);
+	}
+	
+	jsListBox.addItems(items);
+	items = [];
+	for(var i = 11; i < 21; i++)
+	{
+		var item = new JSListBox.Item();
+		item.value = 'Test' + i;
+		items.push(item);
+	}
+	
+	jsListBox.addItems(items);
+});
+</script>
+<style>
+
+
+table, td, tr, thead, tfoot, tbody, th, tf {
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	border:0;
+	line-height:16px;
+}
+</style>
+</head>
+<body>
+		
+	<!--
+	<div id="container" style="position: relative;background-color:blue">
+		<div id="clickHit1" style="z-index:1;position:absolute;top:5px;left:5px;background-color:orange;width:300px;height:300px">
+			<div id="clickHit2" style="z-index:2;position:absolute;bottom:5px;right:5px;background-color:red;width:200px;height:200px"></div>
+		</div>
+		<div id="clickHitNoClick" style="z-index:3;position:absolute;top:20px;left:20px;background-color:green;width:200px;height:200px">
+		</div>
+	</div>
+	-->
+	<div>
+		<span>jQuery UI AutoComplete as list Test </span>
+		<select id="autoCompleteSelectList" size="4">
+			<option>Option 1</option>
+			<option>Option 2</option>
+			<option>Option 3</option>
+			<option>Option 4</option>
+		</select>
+		
+	</div>
+	<!--
+	<div class="demo">
+
+		<ul>
+			<li><a href="#">Aberdeen</a></li>
+			<li><a href="#">Ada</a></li>
+			<li><a href="#">Adamsville</a></li>
+			<li><a href="#">Addyston</a></li>
+			<li><a href="#">Adelphi</a></li>
+			<li><a href="#">Adena</a></li>
+			<li><a href="#">Adrian</a></li>
+			<li><a href="#">Akron</a></li>
+			<li><a href="#">Albany</a></li>
+			<li><a href="#">Alexandria</a></li>
+			<li><a href="#">Alger</a></li>
+			<li><a href="#">Alledonia</a></li>
+			<li><a href="#">Alliance</a></li>
+			<li><a href="#">Alpha</a></li>
+			<li><a href="#">Alvada</a></li>
+		</ul>
+
+	</div>
+	-->
+	<!-- End demo -->
+	
+	
+	<div id="myJSListBox"></div>
+	
+	
+	<!--
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tr style="height:16px">
+		<td>
+			<span style="font-size:10pt;">Here is some text</span>
+		</td>
+		</tr>
+	</table>
+	-->
+</body>
+</html>
