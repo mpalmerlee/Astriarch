@@ -4,7 +4,11 @@ Astriarch
 Astriarch Ruler of the Stars, Space Strategy Game
 http://www.astriarch.com/
 
-View the Silverlight branch for the latest Open Source Silverlight version:
+Open Source Versions:
+HTML5: 
+https://github.com/mpalmerlee/Astriarch/tree/HTML5
+
+Silverlight:
 https://github.com/mpalmerlee/Astriarch/tree/Silverlight
 
 Overview
@@ -19,7 +23,7 @@ Developed in 2010 by <a href="http://www.masteredsoftware.com/" target="_blank">
 <br /><br />
 Currently Astriarch is realeased as a free casual web game.&nbsp; Planned future enhancements include multiplayer mode, research tree, and desktop/tablet version.
 <br /><br />
-The name Astriarch comes from the Ancient Greek words for star (<a href="http://en.wiktionary.org/wiki/%E1%BC%84%CF%83%CF%84%CF%81%CE%BF%CE%BD#Ancient_Greek" target="_blank" rel="nofollow">ástron</a>) and ruler (<a href="http://en.wiktionary.org/wiki/%E1%BC%80%CF%81%CF%87%CF%8C%CF%82" target="_blank" rel="nofollow">arkhos</a>)
+The name Astriarch comes from the Ancient Greek words for star (<a href="http://en.wiktionary.org/wiki/%E1%BC%84%CF%83%CF%84%CF%81%CE%BF%CE%BD#Ancient_Greek" target="_blank" rel="nofollow">ï¿½stron</a>) and ruler (<a href="http://en.wiktionary.org/wiki/%E1%BC%80%CF%81%CF%87%CF%8C%CF%82" target="_blank" rel="nofollow">arkhos</a>)
 
 Credits
 =======
