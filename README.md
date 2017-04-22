@@ -6,6 +6,9 @@ http://www.astriarch.com/
 
 Open Source Versions:
 
+Current/Latest live Multiplayer version:
+https://github.com/MasteredSoftware/Astriarch
+
 HTML5: 
 https://github.com/mpalmerlee/Astriarch/tree/HTML5
 
